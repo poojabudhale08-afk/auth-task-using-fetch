@@ -1,133 +1,107 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-      crossorigin="anonymous"
-    />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/css/style.css">
 
-    <title>Hello, world!</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-  </head>
-  <body>
-    <div class="authWrapper">
-      <div class="card authCard">
-        <div class="card-body">
-             <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button
-                class="nav-link "
-                id="nav-home-tab"
-                data-toggle="tab"
-                data-target="#loginTab"
-                type="button"
-                role="tab"
-                aria-controls="nav-home"
-                aria-selected="true"
-              >
-                Login
-              </button>
-              <button
-                class="nav-link active"
-                id="nav-profile-tab"
-                data-toggle="tab"
-                data-target="#signUpTab"
-                type="button"
-                role="tab"
-                aria-controls="nav-profile"
-                aria-selected="false"
-              >
-                Sign up
-              </button>
+    <title>Login Form</title>
+</head>
+
+<body>
+
+    <div class="loginContainer d-flex justify-content-center">
+        <div class="row mt-5 w-100 justify-content-center">
+            <div class="col-md-6 col-sm-8 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item " role="presentation">
+                                <button class="nav-link active w-100" id="pills-home-tab" data-toggle="pill"
+                                    data-target="#LoginTab" type="button" role="tab" aria-controls="pills-home"
+                                    aria-selected="true">Login</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link w-100" id="pills-profile-tab" data-toggle="pill"
+                                    data-target="#signUpTab" type="button" role="tab" aria-controls="pills-profile"
+                                    aria-selected="false">SignUP</button>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="LoginTab" role="tabpanel"
+                                aria-labelledby="pills-home-tab">
+
+                                <form id="LoginForm">
+
+                                    <div class="form-group">
+                                        <label for="LoginEmail">Enter Email</label>
+                                        <input type="text" class="form-control" id="LoginEmail">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="LoginPassword">Enter Password</label>
+                                        <input type="text" class="form-control" id="LoginPassword">
+                                    </div>
+
+                                    <button class="btn btn-sm btn-block btn-outline-primary">Login</button>
+
+                                </form>
+
+                            </div>
+                            <div class="tab-pane fade" id="signUpTab" role="tabpanel"
+                                aria-labelledby="pills-profile-tab">
+                                <form id="SignUpForm">
+
+                                    <div class="form-group">
+                                        <label for="signUpEmail">Enter Email</label>
+                                        <input type="text" class="form-control" id="signUpEmail">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="signUpPassword">Enter Password</label>
+                                        <input type="text" class="form-control" id="signUpPassword">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="signUpUser">Enter UserRole</label>
+                                        <select class="form-control" id="signUpUser">
+                                            <option value="admin">Admin</option>
+                                            <option value="buyer">Buyer</option>
+                                            <option value="superAdmin">superAdmin</option>
+                                        </select>
+                                    </div>
+
+                                    <button class="btn btn-sm btn-block btn-outline-primary">SignUp</button>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-          </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div
-              class="tab-pane fade  "
-              id="loginTab"
-              role="tabpanel"
-              aria-labelledby="nav-home-tab"
-            >
-              <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginemail">Email</label>
-                    <input type="text" class="form-control" id="loginemail">
-                </div>
-                 <div class="form-group">
-                    <label for="loginpassword">Password</label>
-                    <input type="password" class="form-control" id="loginpassword">
-                </div>
-                <div class="form-group">
-                    <label for="loginuserRole">UserRole</label>
-                    <select id="loginuserRole" class="form-control">
-                        <option value="admin">Admin</option>
-                        <option value="buyer">Buyer</option>
-                        <option value="super admin">Super Admin</option>
-                    </select>
-                </div>
-                <div class="btn btn-block btn-sm btn-outline-primary">Login</div>
-              </form>
-            </div>
-            <div
-              class="tab-pane fade show active"
-              id="signUpTab"
-              role="tabpanel"
-              aria-labelledby="nav-profile-tab"
-            >
-              <form id="signUpForm">
-                <div class="form-group">
-                    <label for="signUpemail">Email</label>
-                    <input type="text" class="form-control" id="signUpemail">
-                </div>
-                 <div class="form-group">
-                    <label for="signUppassword">Password</label>
-                    <input type="password" class="form-control" id="signUppassword">
-                </div>
-                <div class="form-group">
-                    <label for="signUpuserRole">UserRole</label>
-                    <select id="signUpuserRole" class="form-control">
-                        <option value="admin">Admin</option>
-                        <option value="buyer">Buyer</option>
-                        <option value="super admin">Super Admin</option>
-                    </select>
-                </div>
-                <div class="btn btn-block btn-sm btn-outline-primary">Sign Up</div>
-              </form>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-      crossorigin="anonymous"
-    ></script>
+    <div class="spinner d-none" id="spinner">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-    -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="./assets/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
     <script src="./assets/js/auth.js"></script>
-  </body>
+</body>
+
 </html>

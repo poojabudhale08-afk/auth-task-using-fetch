@@ -1,101 +1,126 @@
-const AUTH_URL = `https://my-auth-project-a38da-default-rtdb.firebaseio.com/`
-const LOGIN_URL = `${AUTH_URL}api/auth/login`;
 
-const SIGN_UP_URL = `${AUTH_URL}api/auth/register`;
+const cl = console.log;
+
+const LoginForm = document.getElementById("LoginForm");
+
+const LoginEmail = document.getElementById("LoginEmail");
+
+const LoginPassword = document.getElementById("LoginPassword");
+
+const SignUpForm = document.getElementById("SignUpForm");
+const signUpEmail = document.getElementById("signUpEmail");
+const signUpPassword = document.getElementById("signUpPassword");
+const signUpUser = document.getElementById("signUpUser");
+const spinner = document.getElementById("spinner");
+
+const BaseURL = "https://auth-git-main-iamrkjs-projects.vercel.app";
+
+const LoginURL = `${BaseURL}/api/auth/login`;
+
+const SignUPURL = `${BaseURL}/api/auth/register`;
 
 
-//********SingUp functionality******* */
+const SnackBar = (icon, msg) => {
 
-const signUpForm = document.getElementById('signUpForm');
-const signUpemail = document.getElementById('signUpemail');
-const signUppassword = document.getElementById('signUppassword');
-const signUpuserRole = document.getElementById('signUpuserRole');
+    Swal.fire({
 
-async function onSignUp (ele) {
-    eve.preventDefault();
-    try{
-        //get Obj
-        let obj = {
-            email : signUpemail.value,
-            password : signUppassword.value,
-            userRole : signUpuserRole.value
+        title: msg,
+        icon: icon,
+        timer: 1500
+    })
+}
+
+
+
+const MakeAPICall = async (apiURL, method, body) => {
+
+    body = body ? JSON.stringify(body) : null;
+
+    spinner.classList.remove("d-none");
+
+    let configObj = {
+
+        method: method,
+        body: body,
+        headers: {
+
+            "content-type": "application/json"
         }
-        let res = await fetch(SIGN_UP_URL,{
-            method : "POST",
-            body : JSON.stringify(obj),
-            headers : {
-                "content-type" : "application/json" 
-            }
-        })
+    }
+
+    try {
+
+        let res = await fetch(apiURL, configObj);
+
         let data = await res.json();
-        if(!res.ok){
-            throw new Error(data.message || res.statusText || 'Something went wrong' )
+
+        if (!res.ok) {
+
+            let err = data.error || data.message
+
+            throw new Error(err);
         }
-        Swal.fire({
-            title : 'Account created Successfully!!',
-            icon : 'success'
-        })
-       signUpForm.reset();
 
+        return data;
+    }
+    finally {
 
-
-    }catch(err){
-        cl(err)
-        Swal.fire({
-            title : err.message,
-            icon : "error",
-            timer : 1500
-        })
+       spinner.classList.add("d-none");
     }
 }
 
-signUpForm.addEventListener("submit", onSignUp)
+const onLogin = async (eve) =>{
 
-//********Login functionality******* */
+    eve.preventDefault();
 
-const loginForm = document.getElementById('loginForm');
-const loginemail = document.getElementById('loginemail');
-const loginpassword = document.getElementById('loginpassword');
-const loginuserRole = document.getElementById('loginuserRole');
+    let obj = {
 
-const onlogin = async (eve) => {
-     eve.preventDefault();
+        email : LoginEmail.value,
+        password : LoginPassword.value,
+    }
+
     try{
-        //get Obj
-        let obj = {
-            email : loginemail.value,
-            password : loginpassword.value
-        } 
-        let res = await fetch(LOGIN_URL, {
-            method : "POST",
-            body :  JSON.stringify(obj),
-            headers : {
-                "content-type" : "application/json" 
-            }
-        })
 
-         let data = await res.json();
-        if(!res.ok){
-            throw new Error(data.message || data.error || res.statusText || 'Something went wrong' )
-        }
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userRole", data.userRole);
+        let res = await MakeAPICall(LoginURL,"POST",obj); 
+     
+        localStorage.setItem("token",res.token);
+        localStorage.setItem("userRole",res.userRole);
+        localStorage.setItem("isLogin",true);
 
-         Swal.fire({
-            title : data.message,
-            icon : "error",
-            timer : 1500
-        })
+        window.location.href = "dashboard.html";
 
-}catch(err){
-   cl(err)
-    Swal.fire({
-            title : err.message,
-            icon : "error",
-            timer : 1500
-        })
+    }
+    catch(err){
+
+      SnackBar("error",err);
+    }
 }
 
-}
-loginForm.addEventListener("submit", onlogin);
 
+const onSignUP = async (eve) =>{
+
+    eve.preventDefault();
+
+    let obj = {
+
+        email : signUpEmail.value,
+        password : signUpPassword.value,
+        userRole : signUpUser.value,
+          
+    }
+
+    try{
+  
+        let res = await MakeAPICall(SignUPURL,"POST",obj);
+
+       SnackBar("success",res.message);
+
+    }
+    catch(err){
+
+        SnackBar("error",err);
+    }
+}
+
+LoginForm.addEventListener("submit",onLogin);
+SignUpForm.addEventListener("submit",onSignUP);
