@@ -13,6 +13,12 @@
     align-items: center;
 }
 
+.authWrapper .nav-pills .nav-link {
+    flex-grow: 1;
+    border-radius: 20px;
+}
+
+
 .authCard{
     width: 90%;
     max-width: 600px;
